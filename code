@@ -1,0 +1,49 @@
+import string
+import getpass
+
+
+def validate_password(pw: str):
+    """Retourne (est_valide: bool, erreurs: list[str])."""
+    erreurs = []
+
+    if len(pw) < 10:
+        erreurs.append("au moins 10 caractères")
+    if not any(c.isupper() for c in pw):
+        erreurs.append("au moins une lettre majuscule")
+    if not any(c.islower() for c in pw):
+        erreurs.append("au moins une lettre minuscule")
+    if not any(c.isdigit() for c in pw):
+        erreurs.append("au moins un chiffre")
+    if not any(c in string.punctuation for c in pw):
+        erreurs.append(f"au moins un caractère spécial (ex: {string.punctuation})")
+
+    return (len(erreurs) == 0, erreurs)
+
+
+def main():
+    # On utilise getpass pour ne pas afficher le mdp à l'écran.
+    try:
+        pw = getpass.getpass("Entrez un mot de passe : ")
+    except Exception:
+        # En cas d'environnement qui ne supporte pas getpass, on utilise input.
+        pw = input("Entrez un mot de passe : ")
+
+    valide, erreurs = validate_password(pw)
+
+    if valide:
+        print("mot de passe conforme")
+    else:
+        print("mot de passe non conforme")
+        print("Conditions requises :")
+        print("- minimum 10 caractères")
+        print("- au moins une majuscule")
+        print("- au moins une minuscule")
+        print("- au moins un chiffre")
+        print("- au moins un caractère spécial")
+        print("\nCe qui manque :")
+        for e in erreurs:
+            print(f"- {e}")
+
+
+if __name__ == "__main__":
+    main()
