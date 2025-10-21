@@ -1,4 +1,4 @@
-# Creation-de-mot-de-passe-V-rificateur-de-conformit-
+# Creation-de-mot-de-passe-Verificateur-de-conformite-
 vérifier qu'un mot de passe respecte les règles suivantes : 10 caractères minimum, au moins une majuscule, une minuscule, un chiffre et un caractère spécial. Affiche si le mot de passe est conforme ou non et liste les conditions manquantes.
 Petit script Python pour vérifier qu'un mot de passe respecte des règles minimales de sécurité.
 
